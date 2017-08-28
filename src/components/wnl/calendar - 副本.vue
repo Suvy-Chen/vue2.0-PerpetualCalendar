@@ -52,12 +52,9 @@ export default {
 	name: 'calendar',
 	data () {
 		return {
-			currentDay: 1,
             currentMonth: 1,
             currentYear: 1970,
-            currentWeek: 1,
-            days: [],
-            name: 'calendar'
+            days: []
 		}
 	},
 	created: function() {  //在vue初始化时调用
@@ -72,27 +69,32 @@ export default {
 				let now = new Date();
 				date = new Date(this.formatDate(now.getFullYear() , now.getMonth()+1 , 1));
 			}
-			// 显示年月日周
+			// 显示年月
 			this.currentYear = date.getFullYear();
 			this.currentMonth = date.getMonth() + 1;
-			this.currentDay = date.getDate();
-			this.currentWeek = date.getDay(); // 1...6,0
-			
-			let str = this.formatDate(this.currentYear , this.currentMonth , this.currentDay);
-			
+			// 需要一个暂时固定的日期值
+			let str = this.formatDate(this.currentYear , this.currentMonth , date.getDate());
 			this.days.length = 0;  // 初始化本周
-			// 当前周
-			for (let i=this.currentWeek ; i>=0 ; i--) {
+			// 每个月1号到上个月最后一个周日 i为当前星期数0-6
+			for (let i=date.getDay() ; i>=0 ; i--) {
 				let d = new Date(str);
 				d.setDate(1 - i);//1-i 往前数几天
 				let dayobject = {}; //用一个对象包装Date对象 
 				dayobject.day = d;
 				this.days.push(dayobject);//将日期放入data 中的days数组 供页面渲染使用
 			}
-			//其他周
-			for (let i = 1; i <= 35 - this.currentWeek; i++) {
+			//获取当前月最后一天的星期数
+			let str2 = this.formatDate(this.currentYear , this.currentMonth+1 , date.getDate());
+			if((this.currentMonth+1)==13){
+				str2 = this.formatDate(this.currentYear+1 , 1 , date.getDate());
+			}
+			let d2 = new Date(str2);
+			d2.setDate(0)
+			let num = date.getDay()+d2.getDate()+(5-d2.getDay());
+			//每个月2号开始
+			for (let j = 1; j <= num - date.getDay(); j++) {
 				let d = new Date(str);
-				d.setDate(d.getDate() + i);
+				d.setDate(d.getDate() + j);
 				let dayobject={};
 				dayobject.day=d;
 				this.days.push(dayobject);
@@ -204,8 +206,8 @@ export default {
 		color: #000;
 	}
 	.days li .active {
-		background: #e22b0a;
-		color: #fff;
+		border: 0.125em solid #e22b0a;
+		border-radius: 1rem;
 	}
 	.days li .other-month {
 		padding: 5px;

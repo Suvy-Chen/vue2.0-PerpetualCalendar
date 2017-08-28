@@ -69,13 +69,11 @@ export default {
 				let now = new Date();
 				date = new Date(this.formatDate(now.getFullYear() , now.getMonth()+1 , 1));
 			}
-console.log(date)
 			// 显示年月
 			this.currentYear = date.getFullYear();
 			this.currentMonth = date.getMonth() + 1;
 			// 需要一个暂时固定的日期值
 			let str = this.formatDate(this.currentYear , this.currentMonth , date.getDate());
-console.log(str)
 			this.days.length = 0;  // 初始化本周
 			// 每个月1号到上个月最后一个周日 i为当前星期数0-6
 			for (let i=date.getDay() ; i>=0 ; i--) {
@@ -87,15 +85,12 @@ console.log(str)
 			}
 			//获取当前月最后一天的星期数
 			let str2 = this.formatDate(this.currentYear , this.currentMonth+1 , date.getDate());
+			if((this.currentMonth+1)==13){
+				str2 = this.formatDate(this.currentYear+1 , 1 , date.getDate());
+			}
 			let d2 = new Date(str2);
 			d2.setDate(0)
-console.log(str2)
-console.log(d2)
-			let num = date.getDay()+d2.getDate()+(6-d2.getDay());
-console.log(date.getDay())
-console.log(d2.getDate())
-console.log(6-d2.getDay())
-console.log(num)
+			let num = date.getDay()+d2.getDate()+(5-d2.getDay());
 			//每个月2号开始
 			for (let j = 1; j <= num - date.getDay(); j++) {
 				let d = new Date(str);
@@ -194,7 +189,7 @@ console.log(num)
 	}
 	.days {
 		padding: 0;
-		background: #FFFFFF;
+		background: transparent;
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
@@ -209,17 +204,24 @@ console.log(num)
 		line-height: 60px;
 		font-size: 1rem;
 		color: #000;
+		position: relative;
 	}
 	.days li .active {
-		background: #e22b0a;
-		color: #fff;
+		border: 0.125em solid #999;
+		border-radius: 1rem;
+		position: absolute;
+		left: -0.125rem;
+		top: -0.125rem;
+		right: -0.125rem;
+		bottom: -0.125rem;
+		z-index: -1;
 	}
 	.days li .other-month {
 		padding: 5px;
 		color: #e0e0e0;
 	}
 	.days li:hover {
-		border: 0.125em solid #e22b0a;
+		border: 0.13em solid #e22b0a;
 		border-radius: 1rem;
 	}
 </style>
