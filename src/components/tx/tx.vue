@@ -62,7 +62,7 @@
 </div>
 </template>
 
-<script>
+<script scoped>
 	export default {
 		name: 'tx',
 		data () {
@@ -141,7 +141,7 @@
 	    -ms-flex-negative: 0;
 	    flex-shrink: 0;
 	    width: 100%;
-	    background: #f6f6f6;
+	    background: #f0f0f0;
 	    width: 100%;
 		min-height: calc(100vh - 10rem);
 	}
@@ -223,12 +223,12 @@
 	}
 	/* 下拉 */
 	.tx2_4 {
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		border: 1px solid #999;
-		color: #464646;
+		color: #666;
 		border-radius: 1rem;
 		padding: 0.2rem 0.5rem;
-	    margin: 0.5rem auto 0;
+	    margin: 0.5rem auto;
 	    width: 6rem;
 	}
 	/* 提醒 */

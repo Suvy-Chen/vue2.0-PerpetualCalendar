@@ -52,9 +52,12 @@ export default {
 	name: 'calendar',
 	data () {
 		return {
+			currentDay: 1,
             currentMonth: 1,
             currentYear: 1970,
-            days: []
+            currentWeek: 1,
+            days: [],
+            name: 'calendar'
 		}
 	},
 	created: function() {  //在vue初始化时调用
@@ -69,37 +72,27 @@ export default {
 				let now = new Date();
 				date = new Date(this.formatDate(now.getFullYear() , now.getMonth()+1 , 1));
 			}
-console.log(date)
-			// 显示年月
+			// 显示年月日周
 			this.currentYear = date.getFullYear();
 			this.currentMonth = date.getMonth() + 1;
-			// 需要一个暂时固定的日期值
-			let str = this.formatDate(this.currentYear , this.currentMonth , date.getDate());
-console.log(str)
+			this.currentDay = date.getDate();
+			this.currentWeek = date.getDay(); // 1...6,0
+			
+			let str = this.formatDate(this.currentYear , this.currentMonth , this.currentDay);
+			
 			this.days.length = 0;  // 初始化本周
-			// 每个月1号到上个月最后一个周日 i为当前星期数0-6
-			for (let i=date.getDay() ; i>=0 ; i--) {
+			// 当前周
+			for (let i=this.currentWeek ; i>=0 ; i--) {
 				let d = new Date(str);
 				d.setDate(1 - i);//1-i 往前数几天
 				let dayobject = {}; //用一个对象包装Date对象 
 				dayobject.day = d;
 				this.days.push(dayobject);//将日期放入data 中的days数组 供页面渲染使用
 			}
-			//获取当前月最后一天的星期数
-			let str2 = this.formatDate(this.currentYear , this.currentMonth+1 , date.getDate());
-			let d2 = new Date(str2);
-			d2.setDate(0)
-console.log(str2)
-console.log(d2)
-			let num = date.getDay()+d2.getDate()+(6-d2.getDay());
-console.log(date.getDay())
-console.log(d2.getDate())
-console.log(6-d2.getDay())
-console.log(num)
-			//每个月2号开始
-			for (let j = 1; j <= num - date.getDay(); j++) {
+			//其他周
+			for (let i = 1; i <= 35 - this.currentWeek; i++) {
 				let d = new Date(str);
-				d.setDate(d.getDate() + j);
+				d.setDate(d.getDate() + i);
 				let dayobject={};
 				dayobject.day=d;
 				this.days.push(dayobject);

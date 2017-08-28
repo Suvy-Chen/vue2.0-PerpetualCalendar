@@ -275,11 +275,11 @@
 	.g_top1 ul{
 		color: #000;
 		text-align: left;
-		font-size: 1.2rem;
+		font-size: 1rem;
 	}
 	.g_top1 .g_top11{
 		color: #999;
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 	/* 常用工具 */
 	.g_use1{
