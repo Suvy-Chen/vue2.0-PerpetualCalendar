@@ -44,40 +44,21 @@
 		</div>
 		<!-- 天气卡片 -->
 		<div class="layer">
-			<span class="w_tq1">08月22日</span>
-			<span class="w_tq2">30°</span>
+			<span class="w_tq1">{{ dateYM }}</span>
+			<span class="w_tq2">{{ tdTemp }}°</span>
 			<ul class="w_tq3">
-				<li>小雨</li>
-				<li class="w_tq32">28/37°</li>
+				<li>{{ tdWeather }}</li>
+				<li class="w_tq32">{{ tdTempFrom }}°/{{ tdTempTo }}°</li>
 				<li class="w_tq33">优36</li>
 			</ul>
 			<ul class="w_tq4">
-				<li>广 州</li>
-				<li class="w_tq42">东北风 | 温度 47%</li>
+				<li>{{ nowCity }}</li>
+				<li class="w_tq42">{{ tdWind }} | 湿度{{ tdHumidity }}</li>
 			</ul>
 			<div class="w_tq5">
-				<img src="../../assets/taifeng.png" alt="">
-				<span>台风黄色预警</span>
-				<p>黄浦区气象台发布台风黄色预警[Ⅲ级/较重]</p>
-			</div>
-		</div>
-
-		<div class="layer">
-			<span class="w_xl">23</span>
-			<ul class="w_xl2">
-				<li style="color: black;">七月初二</li>
-				<li class="w_zt">周三 明天</li>
-			</ul>
-			<span class="w_jq">处暑</span>
-			<div class="w_n">
-				<span>第34周 处女座</span>
-				<span style="color: #777;">丁酉年 戊申月 壬午日 辛亥时〔属鸡〕</span>
-				<p>
-					<span style="color: #35ace0;">宜</span> 嫁娶 会亲友 出行 解除 纳采 纳财 开市 出货财 订盟 动...
-				</p>
-				<p>
-					<span style="color:#ec5252;">忌</span> 入宅 盖屋 安葬 安门 出火
-				</p>
+				<img src="../../assets/notice.png" alt="">
+				<span>{{ tdDress }}</span>
+				<p>{{ tdDressAdvice }}</p>
 			</div>
 		</div>
 	</div>
@@ -87,7 +68,8 @@
 
 <script>
 	// 引入组件
-	import calendar from '@/components/wnl/calendar'   // 日历
+	import calendar from '@/components/wnl/calendar';  // 日历
+	import { api } from '../../global/api';   // 接口导入
 
 	export default {
 		name: 'wnl',
@@ -99,7 +81,20 @@
 				Year: '',
 				Month: '',
 				ym: '',
+				dateYM: '',
+				tdTemp: '',
+				tdWeather: '',
+				tdTempFrom: '',
+				tdTempTo: '',
+				nowCity: '',
+				tdWind: '',
+				tdHumidity: '',
+				tdDress: '',
+				tdDressAdvice: ''
 			}
+		},
+		mounted(){
+			this.getData() // 应用方法，调用数据
 		},
 		methods: {
 			nianyue(ym) {
@@ -111,7 +106,30 @@
 			},
 			picknext(Year,Month) {
 				this.$refs.rl.pickNext(Year,Month);
-			}
+			},
+			getData() {
+				/* 获取天气数据 */
+				this.$http.get(api.getWeather).then(function (response){
+					let that = this;
+
+					let sk = response.body.result.sk;
+					that.tdTemp = sk.temp;
+					that.tdWind = sk.wind_direction;
+					that.tdHumidity = sk.humidity;
+
+					let today = response.body.result.today;
+					that.dateYM = today.date_y.substring(5);
+					that.tdWeather = today.weather;
+					let temp = today.temperature;
+					that.tdTempFrom = temp.substring(0,temp.indexOf("℃"));
+					that.tdTempTo = temp.substring(temp.indexOf("~")+1 , temp.lastIndexOf("℃"));
+					that.nowCity = today.city;
+					that.tdDress = today.dressing_index;
+					that.tdDressAdvice = today.dressing_advice;
+				}).catch(function (response){
+					console.log('接口调用不成功')
+				});
+			},
 		}
 	}
 </script>
@@ -197,7 +215,7 @@
 	.w_tq1{
 		position: absolute;
 		right: -1rem;
-		top: -0.2rem;
+		top: -0.1rem;
 		background: #999;
 		border-radius: 0.5rem;
 		color: #fff;
@@ -235,6 +253,7 @@
 	.w_tq4{
 		float: right;
 		font-size: 0.8rem;
+		letter-spacing: 0.1rem;
 		margin: 0.6rem 1rem 0 0;
 		text-align: right;
 		color: #757575;

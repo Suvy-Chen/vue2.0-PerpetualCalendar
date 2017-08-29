@@ -50,7 +50,7 @@ export default {
 				let now = new Date();
 				date = new Date(this.formatDate(now.getFullYear() , now.getMonth()+1 , 1));
 			}
-			// 显示年月
+			// 于父组件显示年月
 			this.currentYear = date.getFullYear();
 			this.currentMonth = date.getMonth() + 1;
 			this.$emit('yearMonth',{
