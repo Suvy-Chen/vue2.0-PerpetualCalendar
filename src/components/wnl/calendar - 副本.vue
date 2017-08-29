@@ -1,24 +1,5 @@
 <template>
 <div class="calendar">
-	<!-- 年份 月份 -->
-	<div class="month">
-		<ul>
-			<!--点击会触发pickpre函数，重新刷新当前日期-->
-			<li>
-				<img src="../../assets/mail.png" alt="">
-			</li>
-			<li>
-				<img src="../../assets/left.png" alt="" @click="pickPre(currentYear,currentMonth)">
-				<span>
-					{{ currentYear }}年 {{ currentMonth }}月<img src="../../assets/unfold.png" alt="">
-				</span>
-				<img src="../../assets/right.png" alt="" @click="pickNext(currentYear,currentMonth)">
-			</li>
-			<li>
-				<img src="../../assets/add.png" alt="">
-			</li>
-		</ul>
-	</div>
 	<!-- 星期 -->
 	<ul class="weekdays">
 		<li style="color:#e22b0a">日</li>
@@ -72,6 +53,10 @@ export default {
 			// 显示年月
 			this.currentYear = date.getFullYear();
 			this.currentMonth = date.getMonth() + 1;
+			this.$emit('yearMonth',{
+				year: this.currentYear,
+				month: this.currentMonth
+			});
 			// 需要一个暂时固定的日期值
 			let str = this.formatDate(this.currentYear , this.currentMonth , date.getDate());
 			this.days.length = 0;  // 初始化本周
@@ -155,25 +140,6 @@ export default {
 		margin: 0 auto;
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.1), 0 1px 5px 0 rgba(0,0,0,0.12);
 	}
-	.month {
-		width: 100%;
-		height: 4.5rem;
-		background: #e22b0a;
-	}
-	.month ul {
-		margin: 0;
-		padding: 0;
-		display: flex;  /* 弹性布局 */
-		justify-content: space-around;
- /* justify-content内容对齐属性应用在弹性容器上，把弹性项沿着弹性容器的主轴线对齐。 */
-	}
-	.month ul li {
-		color: white;
-		font-size: 1.2rem;
-		letter-spacing: 0.1rem;  /* 字符间距 */
-		margin-top: 1.8rem;
-		line-height: 2rem;
-	}
 	.weekdays {
 		margin: 0;
 		padding: 10px 0;
@@ -189,7 +155,7 @@ export default {
 	}
 	.days {
 		padding: 0;
-		background: #FFFFFF;
+		background: transparent;
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
@@ -204,17 +170,24 @@ export default {
 		line-height: 60px;
 		font-size: 1rem;
 		color: #000;
+		position: relative;
 	}
 	.days li .active {
-		border: 0.125em solid #e22b0a;
+		border: 0.125em solid #999;
 		border-radius: 1rem;
+		position: absolute;
+		left: -0.125rem;
+		top: -0.125rem;
+		right: -0.125rem;
+		bottom: -0.125rem;
+		z-index: -1;
 	}
 	.days li .other-month {
 		padding: 5px;
 		color: #e0e0e0;
 	}
 	.days li:hover {
-		border: 0.125em solid #e22b0a;
+		border: 0.13em solid #e22b0a;
 		border-radius: 1rem;
 	}
 </style>

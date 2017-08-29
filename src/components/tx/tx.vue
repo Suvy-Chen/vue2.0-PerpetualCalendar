@@ -125,6 +125,7 @@
 		left: 0;
 		right: 0;
 		bottom: 3.5rem;
+
 	}
 	.tx .mint-tab-item-label {
 	    color: inherit;
@@ -147,12 +148,13 @@
 	}
 	.t_none {
 		color: #999;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		display:flex;
 		align-items:center;
 		justify-content: center;
 		width: 100%;
 		min-height: calc(100vh - 10rem);  /* Calc: 计算容器的宽和高 */
+		letter-spacing: 0.1rem;
 	}
 	.t_none img {
 		width: 36%;
@@ -160,8 +162,8 @@
 	}
 	/* 待办 */
 	.tx2_1 {
-	    color: #b8bbbf;
-	    font-size: 0.95rem;
+	    color: bfbfbf;
+	    font-size: 1rem;
 	    background-color: #fff;
 	    box-shadow: 0 0 1px #b8bbbf;
 	    width: 99%;
@@ -223,7 +225,7 @@
 	}
 	/* 下拉 */
 	.tx2_4 {
-		font-size: 0.7rem;
+		font-size: 0.85rem;
 		border: 1px solid #999;
 		color: #666;
 		border-radius: 1rem;
