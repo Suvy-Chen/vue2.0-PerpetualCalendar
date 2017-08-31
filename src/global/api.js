@@ -17,6 +17,9 @@ let url = {
 
 export const api = {
     "getWeather":"/weather/index?format=2&cityname=%E5%B9%BF%E5%B7%9E&key=f0904370ed4e16008e3a337ca223c3cf",  //获取广州天气
+
+    // json模拟接口
+    'fxJpsc':url.staticPath+'/datajson/fx_jpsc.json',
 }
     
 

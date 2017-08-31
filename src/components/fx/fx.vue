@@ -35,7 +35,7 @@
 				</ul>
 				</mt-tab-item>
 			</mt-navbar>
-			<!-- 精品卡片 -->
+			<!-- 商城卡片 -->
 			<div>
 				<div class="f_jp1">
 					<img src="../../assets/jp2.png" alt="" style="float: left;">
@@ -43,41 +43,18 @@
 					<span class="f_jp12">好券立省，整点来抢 ></span>
 				</div>
 				<div class="f_gt">
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
-					</div>
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
-					</div>
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
-					</div>
-				</div>
-				<div class="f_gt">
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
-					</div>
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
-					</div>
-					<div class="f_jp21">
-						<img src="../../assets/wnl1.png" alt="">
-						<p class="comment_inner">【送酒具】智力原酒进口起泡酒cfsdagfuygduabsdjbfjkdgfuagfuagyfuasgydus</p>
-						<span>￥79.9</span>
+					<div v-for="(jp,jpindex) in fxJpscList">
+						<div class="f_jp21">
+							<img :src="jp.fxJPSCimg" :alt="jp.fxJPSCimg">
+							<p class="comment_inner">{{ jp.fxJPSCtitle }}</p>
+							<span>￥{{ jp.fxJPSCpay }}</span>
+						</div>
 					</div>
 				</div>
 				<div class="f_jp3">
-					<div class="f_jp31"><span>换一批<img src="../../assets/xh.png" alt=""></span></div>
+					<div class="f_jp31" @click="changeBatch()">
+						<span>换一批<img src="../../assets/xh.png" alt=""></span>
+					</div>
 					<div class="f_jp31"><span>更多精品<img src="../../assets/jty.png" alt=""></span></div>
 				</div>
 			</div>
@@ -180,8 +157,6 @@
 					<div class="f_read1">
 						<img src="../../assets/myssz.jpg" alt="">麻衣神算子
 					</div>
-				</div>
-				<div class="f_gt">
 					<div class="f_read1">
 						<img src="../../assets/myssz.jpg" alt="">麻衣神算子
 					</div>
@@ -229,8 +204,6 @@
 						<p class="f_game12">8.4万人在玩</p>
 						<span class="f_game13">进入</span>
 					</div>
-				</div>
-				<div class="f_gt">
 					<div class="f_game1">
 						<img src="../../assets/logo.png" alt="">
 						<p class="f_game11">我要当首富我要当首富我要当首富</p>
@@ -268,13 +241,51 @@
 </template>
 
 <script>
+import {api } from '../../global/api'
 	export default {
 		name: 'fx',
 		data () {
 			return {
+				fxJpscList: [],
+				fxclickNum: 0
 			}
 		},
+		mounted(){
+			this.getfxData() // 应用方法，调用数据
+		},
 		methods: {
+			getfxData: function(){
+				let that = this;
+				// 精品商城
+				this.$http.get(api.fxJpsc).then(function(response){
+					that.fxJpscList = response.data.fxJPSC.slice(0,6);
+					console.log(that.fxJpscList)
+				},function(response){
+					console.log("请求精品商城数据失败")
+				})
+			},
+			changeBatch: function(){
+				let that = this;
+				that.fxclickNum = that.fxclickNum+1;
+				// 精品商城
+				let start;
+				let end;
+				if ((that.fxclickNum+1) % 2 == 0) {
+					start = 6;
+					end = 12;
+					console.log("奇数");
+				}else{
+					start = 0;
+					end = 6;
+					console.log("偶数");
+				}
+				this.$http.get(api.fxJpsc).then(function(response){
+					that.fxJpscList = response.data.fxJPSC.slice(start,end);
+					console.log(that.fxJpscList)
+				},function(response){
+					console.log("请求精品商城数据失败")
+				})
+			}
 		}
 	}
 </script>
@@ -331,6 +342,7 @@
 		margin: -0.2rem 0 0 0;
 	}
 	.f_jp3{
+		clear: both;
 		display: flex;
 		margin-top: 0.2rem;
 		padding: 0.3rem 0 1rem;
@@ -352,12 +364,11 @@
 	}
 	.f_gt{
 		clear: both;
-		display: flex;
-		justify-content: space-between;
 	}	
 	/* 精品卡片 */
 	.f_jp21{
-		flex: 1;
+		float: left;
+		width: 29%;
 		padding: 0.5rem;
 	}
 	.f_jp21 img{
@@ -443,22 +454,24 @@
 	}
 	/* 阅读卡片 */
 	.f_read1{
-		flex: 1;
+		width: 29%;
+		float: left;
 		margin: 0.8rem 0 0.4rem;
 		padding: 0 0.5rem;
 		font-size: 0.8rem;
 		color: #000;
 	}
 	.f_read1 img{
-		width: 96%;
+		width: 6rem;
 	}
 	/* 游戏卡片 */
 	.f_game1{
-		flex: 1;
+		width: 25%;
+		float: left;
 		margin: 0.8rem 0 1rem;
 	}
 	.f_game1 img{
-		width: 80%;
+		width: 4rem;
 	}
 	.f_game1 .f_game11{
 		color: #000;
@@ -469,12 +482,12 @@
 		/** 设置或检索伸缩盒对象的子元素的排列方式 **/
 		-webkit-line-clamp: 1; /** 显示的行数 **/
 		overflow: hidden;  /** 隐藏超出的内容 **/
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 	}
 	.f_game1 .f_game12{
 		color: #999;
 		margin-bottom: 0.3rem;
-		font-size: 0.4rem;		
+		font-size: 0.7rem;		
 	}
 	.f_game1 .f_game13{
 		color: #fff;
