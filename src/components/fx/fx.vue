@@ -46,7 +46,7 @@
 					<div v-for="(jp,jpindex) in fxJpscList">
 						<div class="f_jp21">
 							<img :src="jp.fxJPSCimg" :alt="jp.fxJPSCimg">
-							<p class="comment_inner">{{ jp.fxJPSCtitle }}</p>
+							<p>{{ jp.fxJPSCtitle }}</p>
 							<span>￥{{ jp.fxJPSCpay }}</span>
 						</div>
 					</div>
@@ -369,7 +369,7 @@ import {api } from '../../global/api'
 	/* 精品卡片 */
 	.f_jp21{
 		float: left;
-		width: 29%;
+		width: 28%;
 		padding: 0.5rem;
 	}
 	.f_jp21 img{
@@ -378,6 +378,10 @@ import {api } from '../../global/api'
 		border-radius: 0.5rem;
 	}
 	.f_jp21 p{
+		height: 2rem;
+		color: black;
+		margin-bottom: 0.5rem;
+		font-size: 0.75rem;
 		word-break: break-all;
 		text-overflow: ellipsis;
 		display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
@@ -385,9 +389,6 @@ import {api } from '../../global/api'
 		/** 设置或检索伸缩盒对象的子元素的排列方式 **/
 		-webkit-line-clamp: 2; /** 显示的行数 **/
 		overflow: hidden;  /** 隐藏超出的内容 **/
-		font-size: 0.8rem;
-		color: black;
-		margin-bottom: 0.5rem;
 	}
 	.f_jp21 span{
 		color: red;
@@ -405,6 +406,10 @@ import {api } from '../../global/api'
 		flex: 1rem;
 		float: left;
 		border: 1px solid black;
+		display: flex;   /* 实现图片居中显示 */
+	    flex-direction: row;
+	    justify-content: center;
+	    align-items: center;
 	}
 	.f_ml .f_ml2 img{
 		border-radius: 0.6rem;

@@ -1,10 +1,16 @@
 <template>
 <div class="txtx">
-	<p class="jqjr">近期节日</p>
+	<p class="jqjr0">近期节日</p>
 	<!-- 法定节假日 -->
 	<div class="jqjr1" @click="show1">
-
+		<div>
+			<img src="../../assets/ballon.png" alt="" class="jqjr12">法定节假日
+		</div>
+		<div>
+			<img src="../../assets/jtx.png" alt="" class="jqjr11">
+		</div>
 	</div>
+	<!-- 详细内容 -->
 	<div class="jqjr2" v-show="showFdjjr">
 		<div>
 			<ul>
@@ -50,18 +56,29 @@
 </script>
 
 <style scoped>
-.jqjr{
+.jqjr0{
 	font-size: 0.8rem;
 	color: #999;
 	text-align: left;
 	padding: 0.5rem;
 }
 .jqjr1{
-    height: 1.4rem;
-    padding: 0.3rem;
-    border-bottom: 1px solid #e6e6e6;
+    line-height: 2.4rem;
+    border-bottom: 1px solid #f0f0f0;
     background-color: #fff;
     box-shadow: 0 0 2px #b8bbbf;
+    display: flex;
+ 	justify-content: space-between;
+ 	padding: 0 0.5rem;
+}
+.jqjr1 .jqjr11{
+	position: relative;
+	top: 0.39rem;
+	right: 0.5rem;
+}
+.jqjr1 .jqjr12{
+	position: relative;
+	top: 0.1rem;
 }
 .jqjr2{
 	border-bottom: 0.4rem  solid #e6e6e6;

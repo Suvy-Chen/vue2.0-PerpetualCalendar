@@ -2,9 +2,9 @@
 <div class="add">
 	<!-- 头部 -->
 	<ul class="ad_header">
-		<li>取消</li>
+		<li class="ad_header1">取消</li>
 		<li>新建日程</li>
-		<li>完成</li>
+		<li class="ad_header1">完成</li>
 	</ul>
 	<!-- tab -->
 	<div class="adContainer">
@@ -39,7 +39,7 @@
 		height: 4.5rem;
 		background: #e22b0a;
 		color: #FFF;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		display: flex;  /* 弹性布局 */
 		justify-content: space-between;
 		position: fixed;
@@ -49,6 +49,10 @@
 	.ad_header li {
 		margin: 2rem 1rem;
 		letter-spacing: 0.2rem;
+	}
+	.ad_header .ad_header1{
+		font-size: 1rem;
+		padding-top: 0.15rem;
 	}
 	.adContainer{
 		position: absolute;
