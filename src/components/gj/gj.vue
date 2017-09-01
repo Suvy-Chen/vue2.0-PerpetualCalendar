@@ -224,6 +224,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
+		letter-spacing: 0.15rem;
 	}
 	.gj_header li {
 		margin: 2rem 1rem;
@@ -243,6 +244,7 @@
 		left: 0;
 		right: 0;
 		bottom: 3.5rem;
+		letter-spacing: 0.1rem;
 	}
 	.g_gy{
 		clear: both;

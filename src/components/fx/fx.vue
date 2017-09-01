@@ -1,7 +1,7 @@
 <template>
 	<div class="fx">
 		<!-- 头部 -->
-		<p class="fx_header">发 现</p>
+		<p class="fx_header">发现</p>
 
 		<!-- 内容 -->
 		<div class="cont">
@@ -301,6 +301,7 @@ import {api } from '../../global/api'
 		position: fixed;
 		top: 0;
 		left: 0;
+		letter-spacing: 0.4rem;
 	}
 	.cont{
 		overflow-y: scroll; 

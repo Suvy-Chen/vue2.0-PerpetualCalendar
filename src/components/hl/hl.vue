@@ -4,8 +4,8 @@
 	<div class="h_header">
 		<span></span>
 		<mt-navbar v-model="hl_selected">
-			<mt-tab-item id="hl1">黄&nbsp;历</mt-tab-item>
-			<mt-tab-item id="hl2">运&nbsp;势</mt-tab-item>
+			<mt-tab-item id="hl1">黄历</mt-tab-item>
+			<mt-tab-item id="hl2">运势</mt-tab-item>
 		</mt-navbar>
 		<span><img src="../../assets/share.png" alt=""></span>
 	</div>
@@ -63,6 +63,7 @@ export default {
 	}
 	.h_header .mint-navbar {
 		background: #e22b0a;
+		letter-spacing: 0.4rem;
 	}
 	.h_header .mint-navbar .mint-tab-item {
 	    padding: 2.05rem 0.4rem 0.5rem;

@@ -3,8 +3,8 @@
 	<!-- 头部 -->
 	<ul class="tx_header">
 		<li><img slot="icon" src="../../assets/search.png"></li>
-		<li>提 醒</li>
-		<li><img slot="icon" src="../../assets/add.png"></li>
+		<li>提醒</li>
+		<li><img slot="icon" src="../../assets/add.png" @click="gotoADD"></li>
 	</ul>
 	<!-- 内容 -->
 	<div class="cont">
@@ -19,6 +19,12 @@
 		<mt-tab-container v-model="selected">
 			<!-- 提醒 -->
 			<mt-tab-container-item id="tx1">
+				<div class="t_none" style="min-height: calc(100vh - 26rem);">
+					<ul>
+						<li><img src="../../assets/tx-bj.png" alt=""></li>
+						<li>呐,啥都没有(⊙o⊙)哦！</li>
+					</ul>
+				</div>
 				<TX></TX>
 			</mt-tab-container-item>
 			<!-- 待办 -->
@@ -51,7 +57,6 @@
 <script>
 import txtx from "./txtx";
 import txdb from "./txdb";
-/*import calendar from '@/components/wnl/calendar';*/
 	export default {
 		name: 'tx',
 		components:{
@@ -64,6 +69,9 @@ import txdb from "./txdb";
 			}
 		},
 		methods: {
+			gotoADD: function(){
+				this.$router.push({ path: '/add' })
+			}
 		}
 	}
 </script>
@@ -83,6 +91,7 @@ import txdb from "./txdb";
 	}
 	.tx_header li {
 		margin: 2rem 1rem;
+		letter-spacing: 0.6rem;
 	}
 	.tx_header li:hover {
 		margin: 2rem 1rem;
@@ -99,6 +108,7 @@ import txdb from "./txdb";
 	.tx .mint-tab-item-label {
 	    color: inherit;
 	    font-size: 0.9rem;
+	    letter-spacing: 0.1rem;
 	}
 	.tx .mint-navbar .mint-tab-item {
 	    padding: 0.9rem 0;
@@ -124,9 +134,5 @@ import txdb from "./txdb";
 		width: 100%;
 		min-height: calc(100vh - 10rem);  /* Calc: 计算容器的宽和高 */
 		letter-spacing: 0.1rem;
-	}
-	.t_none img {
-		width: 36%;
-		margin-top: 0.5rem;
 	}
 </style>

@@ -4,11 +4,10 @@ import Countdown from '@/components/countdown'  // 倒计时跳转页面
 import Index from '@/components/index'   // 首页
 import Wnl from '@/components/wnl/wnl'   /* 万年历 */
 import Hl from '@/components/hl/hl'   /* 黄历 */
-/* import Hlhl from '@/components/hl/hlhl'   黄历 */
-/* import Hlys from '@/components/hl/hlys'   黄历 */
 import Fx from '@/components/fx/fx'   /* 发现 */
 import Tx from '@/components/tx/tx'   /* 提醒 */
 import Gj from '@/components/gj/gj'   /* 工具 */
+import Add from '@/components/add'   /* 添加事件 */
 
 Vue.use(Router)
 
@@ -34,6 +33,11 @@ export default new Router({
         { path: 'tx', component: Tx },
         { path: 'gj', component: Gj },
       ]
+    },
+    {
+      path: '/add',
+      name: 'add',
+      component: Add
     }
   ]
 })

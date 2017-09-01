@@ -39,6 +39,7 @@ export default {
 	z-index: 1;
 	width: 100%;
 	height: 3rem;
+	letter-spacing: 0.1rem;
 }
 .wnl-link{
 	width: 25%;
