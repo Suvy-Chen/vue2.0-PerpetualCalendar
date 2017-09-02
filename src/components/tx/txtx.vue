@@ -7,7 +7,8 @@
 			<img src="../../assets/ballon.png" alt="" class="jqjr12">法定节假日
 		</div>
 		<div>
-			<img src="../../assets/jtx.png" alt="" class="jqjr11">
+			<img src="../../assets/jtx.png" alt="" v-show="showjtx" class="jqjr11">
+			<img src="../../assets/jts.png" alt="" v-show="showFdjjr" class="jqjr11">
 		</div>
 	</div>
 	<!-- 详细内容 -->
@@ -40,6 +41,7 @@
 		data () {
 			return {
 				showFdjjr: false,
+				showjtx: true  
 			}
 		},
 		methods: {
@@ -47,8 +49,10 @@
 				let that = this;
 				if (that.showFdjjr == false) {
 					that.showFdjjr = true;
+					that.showjtx = false
 				}else{
-					that.showFdjjr = false
+					that.showFdjjr = false;
+					that.showjtx = true
 				};
 			}
 		}
@@ -79,6 +83,7 @@
 .jqjr1 .jqjr12{
 	position: relative;
 	top: 0.1rem;
+	margin-right: 0.3rem;
 }
 .jqjr2{
 	border-bottom: 0.4rem  solid #e6e6e6;

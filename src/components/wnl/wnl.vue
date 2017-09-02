@@ -15,7 +15,7 @@
 				<img src="../../assets/right.png" alt="" @click="picknext(Year,Month)">
 			</li>
 			<li>
-				<img src="../../assets/add.png" alt="">
+				<img src="../../assets/add.png" alt="" @click="JumpADD">
 			</li>
 		</ul>
 	</div>
@@ -129,6 +129,10 @@
 				}).catch(function (response){
 					console.log('接口调用不成功')
 				});
+			},
+			/*跳转到添加页面*/
+			JumpADD: function(){
+				this.$router.push({ path:'/add' , query:{select:'tx1'} })
 			},
 		}
 	}

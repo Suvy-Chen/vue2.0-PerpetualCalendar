@@ -7,7 +7,7 @@
 		<li><img slot="icon" src="../../assets/add.png" @click="gotoADD"></li>
 	</ul>
 	<!-- 内容 -->
-	<div class="cont">
+	<div class="tx_cont">
 		<mt-navbar v-model="selected">
 			<mt-tab-item id="tx1">提醒</mt-tab-item>
 			<mt-tab-item id="tx2">待办</mt-tab-item>
@@ -19,7 +19,7 @@
 		<mt-tab-container v-model="selected">
 			<!-- 提醒 -->
 			<mt-tab-container-item id="tx1">
-				<div class="t_none" style="min-height: calc(100vh - 26rem);">
+				<div class="t_none" style="min-height: calc(100vh - 26rem);" @click="gotoADD">
 					<ul>
 						<li><img src="../../assets/tx-bj.png" alt=""></li>
 						<li>呐,啥都没有(⊙o⊙)哦！</li>
@@ -33,7 +33,7 @@
 			</mt-tab-container-item>
 			<!-- 生日 -->
 			<mt-tab-container-item id="tx3">
-				<div class="t_none">
+				<div class="t_none" @click="gotoADD">
 					<ul>
 						<li><img src="../../assets/cake.png" alt="" style="width:46%"></li>
 						<li>不要错过重要的日子</li>
@@ -42,7 +42,7 @@
 			</mt-tab-container-item>
 			<!-- 纪念日 -->
 			<mt-tab-container-item id="tx4">
-				<div class="t_none">
+				<div class="t_none" @click="gotoADD">
 					<ul>
 						<li><img src="../../assets/tx-bj.png" alt=""></li>
 						<li>记得一些日子,因为心里装着一些人</li>
@@ -66,12 +66,22 @@ import txdb from "./txdb";
 		data () {
 			return {
 				selected: 'tx1',
+				name: 'tx'
 			}
+		},
+		mounted: function(){
+			this.gobacked()
 		},
 		methods: {
 			gotoADD: function(){
-				this.$router.push({ path: '/add' })
-			}
+				this.$router.push({ path:'/add' , query:{select:this.selected,name:this.name} })
+			},
+			/*取消返回*/
+            gobacked: function(){
+            	if(this.$route.query.cancel == "undefined"){
+            		this.selected = this.$route.query.cancel;
+            	}
+            }
 		}
 	}
 </script>
@@ -96,7 +106,7 @@ import txdb from "./txdb";
 	.tx_header li:hover {
 		margin: 2rem 1rem;
 	}
-	.cont {
+	.tx_cont {
 		overflow-y: scroll; 
 		position: absolute;
 		top: 4.5rem;
@@ -114,7 +124,7 @@ import txdb from "./txdb";
 	    padding: 0.9rem 0;
 	}
 	.tx .mint-navbar .mint-tab-item.is-selected {
-	    border-bottom: 5px solid #e22b0a;
+	    border-bottom: 6px solid #e22b0a;
 	    color: #e22b0a;
 	}
 	.tx .mint-tab-container-item {
@@ -123,7 +133,7 @@ import txdb from "./txdb";
 	    width: 100%;
 	    background: #f0f0f0;
 	    width: 100%;
-		min-height: calc(100vh - 10rem);
+		min-height: calc(100vh - 10.9rem);
 	}
 	.t_none {
 		color: #999;
@@ -132,7 +142,7 @@ import txdb from "./txdb";
 		align-items:center;
 		justify-content: center;
 		width: 100%;
-		min-height: calc(100vh - 10rem);  /* Calc: 计算容器的宽和高 */
+		min-height: calc(100vh - 14rem);  /* Calc: 计算容器的宽和高 */
 		letter-spacing: 0.1rem;
 	}
 </style>

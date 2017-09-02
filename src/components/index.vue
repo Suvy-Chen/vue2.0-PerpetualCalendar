@@ -46,4 +46,10 @@ export default {
 	text-decoration: none;
 	color: #8a8a8a;
 }
+.wnl-link:hover .mint-tab-item.is-selected{
+	color: #e22b0a;
+}
+.wnl-link:hover .mint-tab-item.is-selected img{
+	background: #e22b0a;
+}
 </style>
