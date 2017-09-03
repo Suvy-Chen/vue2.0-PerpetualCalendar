@@ -3,7 +3,7 @@
 </div>
 </template>
 
-<script scoped>
+<script>
 	export default {
 		name: 'txsr',
 		data () {
@@ -15,5 +15,5 @@
 	}
 </script>
 
-<style>
+<style scoped>
 </style>

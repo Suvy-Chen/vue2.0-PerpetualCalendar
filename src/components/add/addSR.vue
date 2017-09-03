@@ -1,17 +1,21 @@
 <template>
-<div class="txjnr">
+<div class="addSR">
 </div>
 </template>
 
 <script>
 	export default {
-		name: 'txjnr',
+		name: 'addSR',
+		components:{
+		},
 		data () {
 			return {
 			}
 		},
+		mounted: function(){
+		},
 		methods: {
-		}
+        }
 	}
 </script>
 

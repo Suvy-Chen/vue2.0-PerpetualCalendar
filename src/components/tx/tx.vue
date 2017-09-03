@@ -65,21 +65,23 @@ import txdb from "./txdb";
 		},
 		data () {
 			return {
-				selected: 'tx1',
+				selected: '',
 				name: 'tx'
 			}
 		},
 		mounted: function(){
-			this.gobacked()
+			this.backed()
 		},
 		methods: {
 			gotoADD: function(){
 				this.$router.push({ path:'/add' , query:{select:this.selected,name:this.name} })
 			},
-			/*取消返回*/
-            gobacked: function(){
-            	if(this.$route.query.cancel == "undefined"){
-            		this.selected = this.$route.query.cancel;
+			/* 添加界面返回 */
+            backed: function(){
+            	if(this.$route.query.select == null){
+            		this.selected = "tx1"
+            	}else{
+            		this.selected = this.$route.query.select;
             	}
             }
 		}

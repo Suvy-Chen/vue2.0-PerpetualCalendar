@@ -16,7 +16,7 @@
 </div>
 </template>
 
-<script scoped>
+<script>
 	export default {
 		name: 'txdb',
 		data () {
@@ -52,7 +52,7 @@
 	}
 </script>
 
-<style >
+<style scoped>
 .tx2_1 {
     color: #bfbfbf;
     font-size: 0.9rem;

@@ -19,29 +19,41 @@
 		<mt-tab-container v-model="selectedAdd">
 			<!-- 提醒 -->
 			<mt-tab-container-item id="tx1">
+				<adtx></adtx>
 			</mt-tab-container-item>
 			<!-- 待办 -->
 			<mt-tab-container-item id="tx2">
+				<addb></addb>
 			</mt-tab-container-item>
 			<!-- 生日 -->
 			<mt-tab-container-item id="tx3">
+				<adsr></adsr>
 			</mt-tab-container-item>
 			<!-- 纪念日 -->
 			<mt-tab-container-item id="tx4">
+				<adjn></adjn>
 			</mt-tab-container-item>
 		</mt-tab-container>
 	</div>
 </div>
 </template>
 
-<script>
-	export default {
+<script scoped>
+import addtx from './addTX';
+import adddb from './addDB';
+import addsr from './addSR';
+import addjnr from './addJNR.vue';
+ 	export default {
 		name: 'add',
 		components:{
+			adtx: addtx,
+			addb: adddb,
+			adsr: addsr,
+			adjn: addjnr,
 		},
 		data () {
 			return {
-				selectedAdd: '',
+				selectedAdd: 'tx1',
 				fromName: ''
 			}
 		},
@@ -53,11 +65,10 @@
             aDD: function(){
                 this.selectedAdd = this.$route.query.select;
                 this.fromName = this.$route.query.name;
-                console.log(this.fromName)
             },
             goback: function(){
             	if(this.fromName == 'tx'){
-            		this.$router.push({ path:'/index/tx' , query:{cancel:this.selectedAdd} })
+            		this.$router.push({ path:'/index/tx',query:{select:this.selectedAdd}})
             	}else{
             		this.$router.push({ path:'/index/wnl' })
             	}

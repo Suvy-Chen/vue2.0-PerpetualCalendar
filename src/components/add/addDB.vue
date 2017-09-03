@@ -1,17 +1,21 @@
 <template>
-<div class="txjnr">
+<div class="addDB">
 </div>
 </template>
 
 <script>
 	export default {
-		name: 'txjnr',
+		name: 'addDB',
+		components:{
+		},
 		data () {
 			return {
 			}
 		},
+		mounted: function(){
+		},
 		methods: {
-		}
+        }
 	}
 </script>
 

@@ -7,7 +7,7 @@ import Hl from '@/components/hl/hl'   /* 黄历 */
 import Fx from '@/components/fx/fx'   /* 发现 */
 import Tx from '@/components/tx/tx'   /* 提醒 */
 import Gj from '@/components/gj/gj'   /* 工具 */
-import Add from '@/components/add'   /* 添加事件 */
+import Add from '@/components/add/add'   /* 添加事件 */
 
 Vue.use(Router)
 

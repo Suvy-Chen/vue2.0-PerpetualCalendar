@@ -259,7 +259,6 @@ import {api } from '../../global/api'
 				// 精品商城
 				this.$http.get(api.fxJpsc).then(function(response){
 					that.fxJpscList = response.data.fxJPSC.slice(0,6);
-					console.log(that.fxJpscList)
 				},function(response){
 					console.log("请求精品商城数据失败")
 				})
