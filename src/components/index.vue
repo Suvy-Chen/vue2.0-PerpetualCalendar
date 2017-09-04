@@ -5,32 +5,32 @@
 		<mt-tabbar>
 			<router-link to="/index/wnl" class="wnl_link">
 				<mt-tab-item>
-					<img slot="icon" src="../assets/wnl1.png" name="footImg" v-show="old">
-					<img slot="icon" src="../assets/wnl2.png" class="show" v-show="change0"><span name="footStr">万年历</span>
+					<img slot="icon" src="../assets/wnl1.png" name="footImg" v-if="old">
+					<img slot="icon" src="../assets/wnl2.png" class="show" v-if="change0"><span name="footStr">万年历</span>
 				</mt-tab-item>
 			</router-link>
 			<router-link to="/index/hl" class="wnl_link">
 				<mt-tab-item>
-					<img slot="icon" src="../assets/hl1.png" name="footImg" v-show="old">
-					<img slot="icon" src="../assets/hl2.png" class="show" v-show="change1"><span name="footStr">黄历</span>
+					<img slot="icon" src="../assets/hl1.png" name="footImg" v-if="old">
+					<img slot="icon" src="../assets/hl2.png" class="show" v-if="change1"><span name="footStr">黄历</span>
 				</mt-tab-item>
 			</router-link>
 			<router-link to="/index/fx" class="wnl_link">
 				<mt-tab-item>
-					<img slot="icon" src="../assets/fx1.png" name="footImg" v-show="old">
-					<img slot="icon" src="../assets/fx2.png" class="show" v-show="change2"><span name="footStr">发现</span>
+					<img slot="icon" src="../assets/fx1.png" name="footImg" v-if="old">
+					<img slot="icon" src="../assets/fx2.png" class="show" v-if="change2"><span name="footStr">发现</span>
 				</mt-tab-item>
 			</router-link>
 			<router-link to="/index/tx" class="wnl_link">
 				<mt-tab-item>
-					<img slot="icon" src="../assets/remind1.png" name="footImg" v-show="old">
-					<img slot="icon" src="../assets/remind2.png" class="show" v-show="change3"><span name="footStr">提醒</span>
+					<img slot="icon" src="../assets/remind1.png" name="footImg" v-if="old">
+					<img slot="icon" src="../assets/remind2.png" class="show" v-if="change3"><span name="footStr">提醒</span>
 				</mt-tab-item>
 			</router-link>
 			<router-link to="/index/gj" class="wnl_link">
 				<mt-tab-item>
-					<img slot="icon" src="../assets/gj1.png" name="footImg" v-show="old">
-					<img slot="icon" src="../assets/gj2.png" class="show" v-show="change4"><span name="footStr">工具</span>
+					<img slot="icon" src="../assets/gj1.png" name="footImg" v-if="old">
+					<img slot="icon" src="../assets/gj2.png" class="show" v-if="change4"><span name="footStr">工具</span>
 				</mt-tab-item>
 			</router-link>
 		</mt-tabbar>
