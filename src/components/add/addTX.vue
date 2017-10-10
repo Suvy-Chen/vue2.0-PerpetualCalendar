@@ -27,9 +27,8 @@
     border-radius: 0.3rem;
     text-align: left;
     font-size: 1.1rem;
-    padding: 0.6rem 1rem;
+    padding: 0.8rem;
     margin: 0.5rem 0.1rem;
     color: #000;
-    min-height: 1.6rem;
 }
 </style>

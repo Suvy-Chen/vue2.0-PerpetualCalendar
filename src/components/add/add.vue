@@ -17,21 +17,25 @@
 		</mt-navbar>
 		<!-- 对应选项卡内容 -->
 		<mt-tab-container v-model="selectedAdd">
-			<!-- 提醒 -->
+			<!-- 提醒<adtx></adtx> -->
 			<mt-tab-container-item id="tx1">
-				<adtx></adtx>
+				<p>请输入提醒事项：</p>
+				<div contenteditable=true class="adt_write"></div>
 			</mt-tab-container-item>
-			<!-- 待办 -->
+			<!-- 待办<addb></addb> -->
 			<mt-tab-container-item id="tx2">
-				<addb></addb>
+				<p>请输入待办事项：</p>
+				<div contenteditable=true class="adt_write"></div>
 			</mt-tab-container-item>
-			<!-- 生日 -->
+			<!-- 生日<adsr></adsr> -->
 			<mt-tab-container-item id="tx3">
-				<adsr></adsr>
+				<p>请输入生日事项：</p>
+				<div contenteditable=true class="adt_write"></div>
 			</mt-tab-container-item>
-			<!-- 纪念日 -->
+			<!-- 纪念日<adjn></adjn> -->
 			<mt-tab-container-item id="tx4">
-				<adjn></adjn>
+				<p>请输入纪念日事项：</p>
+				<div contenteditable=true class="adt_write"></div>
 			</mt-tab-container-item>
 		</mt-tab-container>
 	</div>
@@ -122,7 +126,17 @@ import addjnr from './addJNR.vue';
 	    flex-shrink: 0;
 	    width: 100%;
 	    background: #f0f0f0;
-	    width: 100%;
-		min-height: calc(100vh);
+		min-height: calc(100vh - 7.4rem);
+	}
+	/* 提醒 */
+	.adt_write {
+	    background: #fff;
+	    box-shadow: 0 0 1px #999;
+	    border-radius: 0.3rem;
+	    text-align: left;
+	    font-size: 1.1rem;
+	    padding: 0.8rem;
+	    margin: 0.5rem 0.1rem;
+	    color: #000;
 	}
 </style>

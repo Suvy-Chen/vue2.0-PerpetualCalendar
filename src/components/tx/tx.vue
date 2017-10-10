@@ -115,7 +115,6 @@ import txdb from "./txdb";
 		left: 0;
 		right: 0;
 		bottom: 3.5rem;
-
 	}
 	.tx .mint-tab-item-label {
 	    color: inherit;
